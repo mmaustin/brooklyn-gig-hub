@@ -1,0 +1,7 @@
+<form action="/gigs/<%= @gig.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    Venue: <input type="text" name="venue">
+    Date: <input type="text" name="date">
+    Time: <input type="text" name="time">
+    <input type="submit" value="Edit Gig">
+</form>
