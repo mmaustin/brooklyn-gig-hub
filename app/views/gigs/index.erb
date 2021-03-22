@@ -1,4 +1,4 @@
 
 <% @gigs.each do |gig|%>
-<p>*** Where: <%= gig.venue%> *** Date: <%= gig.date%>  *** Time: <%= gig.time%> ***</p><br>
+<p>**** <%= gig.user.username%> *** <%= gig.venue%> *** <%= gig.date%>  *** <%= gig.time%> *** </p><br>
 <% end%>

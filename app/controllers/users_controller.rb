@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
         #binding.pry
         end
-        redirect '/main'
+        redirect '/gigs'
     end
 
     get '/login' do
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         @user = User.find_by_username(params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect '/main'
+            redirect '/gigs'
         else
             redirect '/login'
         end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
         session.clear
-        erb :'users/logout'
+        redirect '/login'
     end
 
 end

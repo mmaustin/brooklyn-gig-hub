@@ -4,11 +4,19 @@ class GigsController < ApplicationController
 
     get '/gigs' do
         @gigs = Gig.all 
-        erb :'gigs/index'
+        if !logged_in?
+            redirect '/login'
+        else
+            erb :'gigs/index'
+        end
     end
 
     get '/gigs/new' do
-        erb :'gigs/new'
+        #if !logged_in?
+        #    redirect '/login'
+        #else
+            erb :'gigs/new'
+        #end
     end
 
     post '/gigs' do
@@ -17,7 +25,7 @@ class GigsController < ApplicationController
         if @gig.venue.blank? || @gig.date.blank? || @gig.time.blank?
             redirect '/gigs/new'
         else
-            @gig.user = User.all.last
+            @gig.user = current_user
             @gig.save
         end
         #redirect '/gigs'
