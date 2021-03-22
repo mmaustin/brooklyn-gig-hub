@@ -38,7 +38,6 @@ class GigsController < ApplicationController
 
     post '/gigs/:id' do
         @gig = Gig.find_by_id(params[:id])
-        #@gig.update(venue: params[:venue], date: params[:date], time: params[:time])
         @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
         redirect "/gigs/#{@gig.id}"
     end

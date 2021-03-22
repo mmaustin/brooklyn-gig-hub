@@ -1,0 +1,7 @@
+<% if @players.size == 0%>
+    <p>There are no players.</p>
+<% else%>
+    <% @players.each do |player|%>
+        <h3>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%></h3>
+    <%end%>
+<%end%>
