@@ -12,11 +12,11 @@ class GigsController < ApplicationController
     end
 
     get '/gigs/new' do
-        #if !logged_in?
-        #    redirect '/login'
-        #else
+        if !logged_in?
+            redirect '/login'
+        else
             erb :'gigs/new'
-        #end
+        end
     end
 
     post '/gigs' do
@@ -34,29 +34,45 @@ class GigsController < ApplicationController
 
     get '/gigs/:id' do
         #binding.pry
-        @gig = Gig.find_by_id(params[:id])
-        erb :'gigs/show'
+        if logged_in?
+            @gig = Gig.find_by_id(params[:id])
+            erb :'gigs/show'
+        else
+            redirect '/login'
+        end
     end
 
     get '/gigs/:id/edit' do
-        @gig = Gig.find_by_id(params[:id])
-        erb :'gigs/edit'
+        if logged_in?
+            @gig = Gig.find_by_id(params[:id])
+            erb :'gigs/edit'
+        else
+            redirect '/login'
+        end
     end
 
 
     patch '/gigs/:id' do
         @gig = Gig.find_by_id(params[:id])
-        @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
-        redirect "/gigs/#{@gig.id}"
+        if @gig.user == current_user && params[:venue] != nil && params[:date] != nil && params[:time] != nil
+            @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
+            redirect "/gigs/#{@gig.id}"
+        else
+            redirect 'login'
+        end
     end
 
-    delete '/gigs/gigs/:id' do
+    delete '/gigs/:id' do
         @gig = Gig.find_by(id: params[:id])
-        @gig.destroy
-        if Gig.all.size == 0
-            redirect '/gigs/new'
+        if @gig.user == current_user
+            @gig.destroy
+                if Gig.all.size == 0
+                    redirect '/gigs/new'
+                else
+                    redirect '/gigs'
+                end
         else
-            redirect '/gigs'
+            redirect 'login'
         end
     end
 

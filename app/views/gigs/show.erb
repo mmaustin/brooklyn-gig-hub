@@ -1,7 +1,7 @@
+<p>**** <%= @gig.user.username%> *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
 
-<p>*** Where: <%= @gig.venue%> *** Date: <%= @gig.date%>  *** Time: <%= @gig.time%> ***</p><br>
 
-<form action="gigs/<%= @gig.id%>" method='post'>
+<form action="/gigs/<%= @gig.id%>" method='post'>
     <input id='hidden' type='hidden' name='_method' value='delete'>
     <input type='submit' value="Delete Gig">
 </form>

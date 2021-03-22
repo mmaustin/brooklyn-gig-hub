@@ -1,3 +1,6 @@
+<p>**** <%= @gig.user.username%> *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
+
+<% if @gig.user == current_user%>
 <form action="/gigs/<%= @gig.id%>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
     Venue: <input type="text" name="venue">
@@ -5,3 +8,6 @@
     Time: <input type="text" name="time">
     <input type="submit" value="Edit Gig">
 </form>
+<%else%>
+<p>Not your gig</p>
+<%end%>
