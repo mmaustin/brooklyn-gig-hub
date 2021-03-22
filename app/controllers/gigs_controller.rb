@@ -36,13 +36,13 @@ class GigsController < ApplicationController
     end
 
 
-    post '/gigs/:id' do
+    patch '/gigs/:id' do
         @gig = Gig.find_by_id(params[:id])
         @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
         redirect "/gigs/#{@gig.id}"
     end
 
-    post '/gigs/gigs/:id' do
+    delete '/gigs/gigs/:id' do
         @gig = Gig.find_by(id: params[:id])
         @gig.destroy
         if Gig.all.size == 0

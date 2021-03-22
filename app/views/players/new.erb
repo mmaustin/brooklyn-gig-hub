@@ -1,3 +1,7 @@
+<% @bands.each do |band|%>
+    <p>Band Name: <%= band.username%> *** Band Id: <%= band.id%></p>
+<%end%>
+
 <form action="/players" method="post">
     Name: <input type="text" name="name">
     Instrument: <input type="text" name="instrument">

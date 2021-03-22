@@ -8,6 +8,7 @@ class PlayersController < ApplicationController
     end
 
     get '/players/new' do
+        @bands = User.all
         erb :'players/new'
     end
 
@@ -20,13 +21,15 @@ class PlayersController < ApplicationController
             @player.user = User.all.last
             @player.save
         end
-        redirect '/players'
-        #redirect "players/#{@player.id}"
+        #redirect '/players'
+        redirect "players/#{@player.id}"
     end
 
     get '/players/:id' do
         @player = Player.find_by_id(params[:id])
         erb :'players/show'
     end
+
+
 
 end
