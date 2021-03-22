@@ -1,0 +1,6 @@
+<form action="/players/<%= @player.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    Name: <input type="text" name="name">
+    Instrument: <input type="text" name="instrument">
+    <input type="submit" value="Edit Player">
+</form>

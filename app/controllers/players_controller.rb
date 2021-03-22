@@ -30,6 +30,15 @@ class PlayersController < ApplicationController
         erb :'players/show'
     end
 
+    get '/players/:id/edit' do
+        @player = Player.find_by_id(params[:id])
+        erb :'players/edit'
+    end
 
+    patch '/players/:id' do
+        @player = Player.find_by_id(params[:id])
+        @player.update(name: params[:name], instrument: params[:instrument])
+        redirect "/players/#{@player.id}"
+    end
 
 end
