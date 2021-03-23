@@ -4,7 +4,11 @@ class PlayersController < ApplicationController
 
     get '/players' do
         @players = Player.all
-        erb :'players/index'
+        if !logged_in?
+            redirect '/login'
+        else
+            erb :'players/index'
+        end
     end
 
     get '/players/new' do
