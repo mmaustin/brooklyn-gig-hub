@@ -1,7 +1,7 @@
 
 <% @gigs.each do |gig|%>
 <% if gig.user == current_user%>
-<p>**** <%= gig.user.username%> *** <%= gig.venue%> *** <%= gig.date%>  *** <%= gig.time%> *** This is yours</p><br>
+<p>**** <%= gig.user.username%> *** <%= gig.venue%> *** <%= gig.date%>  *** <%= gig.time%> ***  <a href="/gigs/<%= gig.id%>">Link</a></p><br>
 <%else%>
 <p>**** <%= gig.user.username%> *** <%= gig.venue%> *** <%= gig.date%>  *** <%= gig.time%> ***</p>                 
 <% end%>

@@ -6,11 +6,6 @@ class UsersController < ApplicationController
         erb :'users/signup'
     end
 
-    get '/main' do
-        @user = User.find_by_id(session[:user_id])
-        erb :'users/main'
-    end
-
     post '/signup' do
         #binding.pry
         @user = User.create(params)

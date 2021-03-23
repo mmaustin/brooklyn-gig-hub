@@ -35,31 +35,33 @@ class GigsController < ApplicationController
     get '/gigs/:id' do
         #binding.pry
         #change this to if @gig.user == current_user, after the @gig has been found by id
-        if logged_in?
-            @gig = Gig.find_by_id(params[:id])
+        @gig = Gig.find_by_id(params[:id])
+        if @gig.user == current_user
+            #@gig = Gig.find_by_id(params[:id])
             erb :'gigs/show'
         else
-            redirect '/login'
+            redirect '/gigs'
         end
     end
 
     get '/gigs/:id/edit' do
-        if logged_in?
-            @gig = Gig.find_by_id(params[:id])
+        @gig = Gig.find_by_id(params[:id])
+        if @gig.user == current_user
             erb :'gigs/edit'
         else
-            redirect '/login'
+            redirect '/gigs'
         end
     end
 
 
     patch '/gigs/:id' do
+        #binding.pry
         @gig = Gig.find_by_id(params[:id])
-        if @gig.user == current_user && params[:venue] != nil && params[:date] != nil && params[:time] != nil
+        if @gig.user == current_user && params[:venue] != "" && params[:date] != "" && params[:time] != ""
             @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
             redirect "/gigs/#{@gig.id}"
         else
-            redirect 'login'
+            redirect '/gigs'
         end
     end
 
@@ -73,7 +75,7 @@ class GigsController < ApplicationController
                     redirect '/gigs'
                 end
         else
-            redirect 'login'
+            redirect 'gigs'
         end
     end
 

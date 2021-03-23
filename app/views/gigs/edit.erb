@@ -1,4 +1,4 @@
-<p>****  *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
+<p>**** <%= @gig.user.username%>  *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
 
 <% if @gig.user == current_user%>
 <form action="/gigs/<%= @gig.id%>" method="post">
