@@ -12,8 +12,11 @@ class PlayersController < ApplicationController
     end
 
     get '/players/new' do
-        @bands = User.all
-        erb :'players/new'
+        if !logged_in?
+            redirect '/login'
+        else
+            erb :'players/new'
+        end
     end
 
     post '/players' do
@@ -22,7 +25,7 @@ class PlayersController < ApplicationController
         if @player.name.blank? || @player.instrument.blank?
             redirect '/players/new'
         else
-            @player.user = User.all.last
+            @player.user = current_user
             @player.save
         end
         #redirect '/players'
@@ -30,13 +33,21 @@ class PlayersController < ApplicationController
     end
 
     get '/players/:id' do
-        @player = Player.find_by_id(params[:id])
-        erb :'players/show'
+        if logged_in?
+            @player = Player.find_by_id(params[:id])
+            erb :'players/show'
+        else
+            redirect '/login'
+        end
     end
 
     get '/players/:id/edit' do
-        @player = Player.find_by_id(params[:id])
-        erb :'players/edit'
+        if logged_in?
+            @player = Player.find_by_id(params[:id])
+            erb :'players/edit'
+        else
+            redirect '/login'
+        end
     end
 
     patch '/players/:id' do

@@ -1,9 +1,9 @@
-<% @bands.each do |band|%>
-    <p>Band Name: <%= band.username%> *** Band Id: <%= band.id%></p>
-<%end%>
-
+<% if logged_in?%>
 <form action="/players" method="post">
     Name: <input type="text" name="name">
     Instrument: <input type="text" name="instrument">
     <input type="submit" value="New Player">
 </form>
+<% else%>
+    <p>You must be logged in to create a player</p>
+<%end%>

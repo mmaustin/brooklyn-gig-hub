@@ -1,6 +1,12 @@
+<p>**** <%= @player.user.username%> *** <%= @player.name%> *** <%= @player.instrument%>  ***</p><br>
+
+<% if @player.user == current_user%>
 <form action="/players/<%= @player.id%>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
     Name: <input type="text" name="name">
     Instrument: <input type="text" name="instrument">
     <input type="submit" value="Edit Player">
 </form>
+<%else%>
+    <p>Not your player</p>
+<%end%>
