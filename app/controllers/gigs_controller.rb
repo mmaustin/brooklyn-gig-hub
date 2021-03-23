@@ -34,6 +34,7 @@ class GigsController < ApplicationController
 
     get '/gigs/:id' do
         #binding.pry
+        #change this to if @gig.user == current_user, after the @gig has been found by id
         if logged_in?
             @gig = Gig.find_by_id(params[:id])
             erb :'gigs/show'

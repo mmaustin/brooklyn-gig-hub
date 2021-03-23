@@ -1,3 +1,4 @@
+<% if @gig.user == current_user%>
 <p>**** <%= @gig.user.username%> *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
 
 
@@ -5,3 +6,6 @@
     <input id='hidden' type='hidden' name='_method' value='delete'>
     <input type='submit' value="Delete Gig">
 </form>
+<%else%>
+<p>This is not your gig</p>
+<%end%>
