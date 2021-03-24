@@ -1,0 +1,9 @@
+<div id="u-index">
+
+<% @users.each do |user|%>
+<% if user == current_user%>
+<p>**** <%= user.username%> *** <%= user.id%> *** <a href="/users/<%= user.id%>">Link</a> </p><br>
+<% else%>
+<p>**** <%= user.username%> *** <%= user.id%></p><br>
+<%end%>
+<%end%>

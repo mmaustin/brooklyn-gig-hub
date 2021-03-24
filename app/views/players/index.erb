@@ -4,7 +4,11 @@
     <p>There are no players.</p>
 <% else%>
     <% @players.each do |player|%>
-        <h3>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%></h3>
+        <% if player.user == current_user%>
+        <p>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%> *** <a href="/players/<%= player.id%>">Link</a></p>
+        <%else%>
+        <p>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%></p>
+        <%end%>
     <%end%>
 <%end%>
 

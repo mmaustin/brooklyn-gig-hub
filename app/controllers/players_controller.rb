@@ -20,7 +20,6 @@ class PlayersController < ApplicationController
     end
 
     post '/players' do
-        #binding.pry
         @player = Player.new(params)
         if @player.name.blank? || @player.instrument.blank?
             redirect '/players/new'
@@ -28,22 +27,21 @@ class PlayersController < ApplicationController
             @player.user = current_user
             @player.save
         end
-        #redirect '/players'
         redirect "players/#{@player.id}"
     end
 
     get '/players/:id' do
-        if logged_in?
-            @player = Player.find_by_id(params[:id])
+        @player = Player.find_by_id(params[:id])
+        if @player.user == current_user
             erb :'players/show'
         else
-            redirect '/login'
+            redirect '/players'
         end
     end
 
     get '/players/:id/edit' do
-        if logged_in?
-            @player = Player.find_by_id(params[:id])
+        @player = Player.find_by_id(params[:id])
+        if @player.user == current_user
             erb :'players/edit'
         else
             redirect '/login'
@@ -52,14 +50,26 @@ class PlayersController < ApplicationController
 
     patch '/players/:id' do
         @player = Player.find_by_id(params[:id])
-        @player.update(name: params[:name], instrument: params[:instrument])
-        redirect "/players/#{@player.id}"
+        if @player.user == current_user && params[:name] != "" && params[:instrument] != ""
+            @player.update(name: params[:name], instrument: params[:instrument])
+            redirect "/players/#{@player.id}"
+        else
+            redirect '/players'
+        end
     end
 
-    delete "/players/:id" do
-        @player = Player.find_by_id(params[:id])
-        @player.destroy
-        redirect '/players'
+    delete '/players/:id' do
+        @player = Player.find_by(id: params[:id])
+        if @player.user == current_user
+            @player.destroy
+                if Player.all.size == 0
+                    redirect '/players/new'
+                else
+                    redirect '/players'
+                end
+        else
+            redirect '/players'
+        end
     end
 
 end

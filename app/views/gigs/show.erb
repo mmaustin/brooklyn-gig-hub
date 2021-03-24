@@ -1,6 +1,7 @@
 <% if @gig.user == current_user%>
 <p>**** <%= @gig.user.username%> *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
 
+
 <a href="/gigs/<%= @gig.id%>/edit">Edit Gig</a>
 <form action="/gigs/<%= @gig.id%>" method='post'>
     <input id='hidden' type='hidden' name='_method' value='delete'>

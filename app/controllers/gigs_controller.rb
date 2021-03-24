@@ -69,7 +69,7 @@ class GigsController < ApplicationController
                     redirect '/gigs'
                 end
         else
-            redirect 'gigs'
+            redirect '/gigs'
         end
     end
 

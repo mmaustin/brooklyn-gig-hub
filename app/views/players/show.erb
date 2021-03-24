@@ -1,6 +1,12 @@
+<% if @player.user == current_user%>
 <h3>Band Member: <%= @player.name%> *** Instrument: <%= @player.instrument%> *** <%= @player.user.username%> *** <%= @player.id%></h3>
 
+
+<a href="/players/<%= @player.id%>/edit">Edit Player</a>
 <form action="/players/<%= @player.id%>" method='post'>
     <input id='hidden' type='hidden' name='_method' value='delete'>
     <input type='submit' value="Delete Player">
 </form>
+<%else%>
+    <p>This is not your player</p>
+<%end%>
