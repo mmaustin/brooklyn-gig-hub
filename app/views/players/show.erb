@@ -1,4 +1,4 @@
-<h3>Band Member: <%= @player.name%> *** Instrument: <%= @player.instrument%> *** <%= @player.user.username%></h3>
+<h3>Band Member: <%= @player.name%> *** Instrument: <%= @player.instrument%> *** <%= @player.user.username%> *** <%= @player.id%></h3>
 
 <form action="/players/<%= @player.id%>" method='post'>
     <input id='hidden' type='hidden' name='_method' value='delete'>

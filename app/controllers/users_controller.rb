@@ -7,13 +7,11 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        #binding.pry
         @user = User.create(params)
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
             redirect '/signup'
         else
             session[:user_id] = @user.id
-        #binding.pry
         end
         redirect '/gigs'
     end
@@ -33,9 +31,12 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        #binding.pry
         @user = User.find_by(id: params[:id])
-        erb :'users/show'
+        if @user == current_user
+            erb :'users/show'
+        else
+            redirect '/login'
+        end
     end
 
     get '/logout' do

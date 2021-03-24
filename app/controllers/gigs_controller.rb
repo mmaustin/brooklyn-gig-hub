@@ -20,7 +20,6 @@ class GigsController < ApplicationController
     end
 
     post '/gigs' do
-        #binding.pry
         @gig = Gig.new(params)
         if @gig.venue.blank? || @gig.date.blank? || @gig.time.blank?
             redirect '/gigs/new'
@@ -28,16 +27,12 @@ class GigsController < ApplicationController
             @gig.user = current_user
             @gig.save
         end
-        #redirect '/gigs'
         redirect "gigs/#{@gig.id}"
     end
 
     get '/gigs/:id' do
-        #binding.pry
-        #change this to if @gig.user == current_user, after the @gig has been found by id
         @gig = Gig.find_by_id(params[:id])
         if @gig.user == current_user
-            #@gig = Gig.find_by_id(params[:id])
             erb :'gigs/show'
         else
             redirect '/gigs'
@@ -55,7 +50,6 @@ class GigsController < ApplicationController
 
 
     patch '/gigs/:id' do
-        #binding.pry
         @gig = Gig.find_by_id(params[:id])
         if @gig.user == current_user && params[:venue] != "" && params[:date] != "" && params[:time] != ""
             @gig.update(venue: params[:venue], date: params[:date], time: params[:time])

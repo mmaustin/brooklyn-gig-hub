@@ -1,5 +1,13 @@
-<%= @user.username%><br>
+<div id="user-show">
 
-<%= @user.gigs%><br>
+<%= @user.username%><br><br>
 
-<%= @user.players%>
+<% @user.gigs.each do |gig|%>
+    <p>Show details: <%= gig.venue%> *** <%=gig.date%> *** <%=gig.time%></p><br>
+<% end%>
+<br>
+<% @user.players.each do |player|%>
+    <p>Band Member: <%= player.name%> *** <%= player.instrument%></p>
+<% end%>
+
+</div>
