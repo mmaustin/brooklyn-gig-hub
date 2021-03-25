@@ -15,7 +15,6 @@ body {
     width: 50%;
     margin-top: 0;
     height: 700px;
-    border: 1px solid blue;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +25,6 @@ footer {
     margin: 0;
     height: 20px;
     width: 100%;
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -49,12 +47,8 @@ footer {
     width: 80%;
 }
 
-.notice {
-    font-size: xx-large;
-}
 
 nav {
-    border: 1px solid black;
     margin-top: 0;
     height: 100px;
     width: 100%;
@@ -65,7 +59,6 @@ nav {
 }
 
 nav ul {
-    border: 1px solid orange;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -77,4 +70,39 @@ nav ul {
 
   nav ul li a {
     text-decoration: none;
+  }
+
+  .common {
+      border-top: 2px dotted blue;
+      border-bottom: 2px dotted blue;
+      margin: 0;
+      height: 570px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+  }
+
+  .a-welcome {
+      width: 100%;
+      height: 20px;
+      margin: 0;
+      text-decoration: none;
+      color: red;
+      text-align: center;
+  }
+
+  .p-signup, .p-login {
+      height: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: row wrap;
+  }
+
+  #user-message {
+      color: blue;
+      margin: 20px 20px 20px 20px;
   }

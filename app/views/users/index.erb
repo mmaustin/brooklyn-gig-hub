@@ -1,9 +1,12 @@
-
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
+    <h2 id="user-message">Below you will find a list of registered bands, the band's ID, and a link to your band.</h2>
 
 <% @users.each do |user|%>
-<% if user == current_user%>
-<p>**** <%= user.username%> *** <%= user.id%> *** <a href="/users/<%= user.id%>">Link</a> </p><br>
-<% else%>
-<p>**** <%= user.username%> *** <%= user.id%></p><br>
+    <% if user == current_user%>
+        <h3>** <%= user.username%> ** <%= user.id%> ** <a href="/users/<%= user.id%>">your band</a> </h3><br>
+    <% else%>
+        <h3>** <%= user.username%> ** <%= user.id%></h3><br>
+    <%end%>
 <%end%>
-<%end%>
+</div>

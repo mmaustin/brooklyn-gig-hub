@@ -1,11 +1,14 @@
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
+    <h2 id="user-message">Your bands's gigs and personnel:</h2>
 
+    <h3><%= @user.username%></h3>
 
-<%= @user.username%><br><br>
-
-<% @user.gigs.each do |gig|%>
-    <p>Show details: <%= gig.venue%> *** <%=gig.date%> *** <%=gig.time%></p><br>
-<% end%>
-<br>
-<% @user.players.each do |player|%>
-    <p>Band Member: <%= player.name%> *** <%= player.instrument%></p>
-<% end%>
+    <% @user.gigs.each do |gig|%>
+        <h3><%= gig.venue%> *** <%=gig.date%> *** <%=gig.time%></h3>
+    <% end%>
+    
+    <% @user.players.each do |player|%>
+        <h3><%= player.name%> *** <%= player.instrument%></h3>
+    <% end%>
+</div>
