@@ -1,9 +1,14 @@
-<% if logged_in?%>
-<form action="/players" method="post">
-    Name: <input type="text" name="name">
-    Instrument: <input type="text" name="instrument">
-    <input type="submit" value="New Player">
-</form>
-<% else%>
-    <p>You must be logged in to create a player</p>
-<%end%>
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
+    <h2 id="p-signup-message">Add a new player below</h2>
+
+    <% if logged_in?%>
+    <form action="/players" method="post">
+        <p class="new-p">Name: <input type="text" name="name"><p>
+        <p class="new-p">Instrument: <input type="text" name="instrument"></p>
+        <p class="new-p"><input type="submit" value="New Player"></p>
+    </form>
+    <% else%>
+        <p class="new-p">You must be logged in to create a player</p>
+    <%end%>
+</div>

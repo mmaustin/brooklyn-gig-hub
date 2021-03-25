@@ -1,14 +1,19 @@
-<p class="notice">You must fill out all of the fields or you will be redirected</p>
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
 
-<p>**** <%= @player.user.username%> *** <%= @player.name%> *** <%= @player.instrument%>  ***  <%= @player.id%></p><br>
+    <h2 id="player-message">To edit the player you must fill out all of the fields or you will redirect to the players page.</h2>
 
-<% if @player.user == current_user%>
-<form action="/players/<%= @player.id%>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    Name: <input type="text" name="name">
-    Instrument: <input type="text" name="instrument">
-    <input type="submit" value="Edit Player">
-</form>
-<%else%>
-    <p>Not your player</p>
-<%end%>
+    <h3>**** <%= @player.user.username%> *** <%= @player.name%> *** <%= @player.instrument%>  ***  <%= @player.id%></h3><br>
+
+    <% if @player.user == current_user%>
+    <form action="/players/<%= @player.id%>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <p class="edit-p">Name: <input type="text" name="name"></p>
+        <p class="edit-p">Instrument: <input type="text" name="instrument"></p>
+        <p class="edit-p"><input type="submit" value="Edit Player"></p>
+    </form>
+    <%else%>
+        <p>Not your player</p>
+    <%end%>
+
+</div>
