@@ -1,13 +1,16 @@
-<div id="players-box">
+<div class="common">
+
+    <h1>Brooklyn Band Hub</h1>
+    <p id="player-message">Below you will find a list of band personnel, the player's ID, and a link to your players.</p>
 
 <% if @players.size == 0%>
     <p>There are no players.</p>
 <% else%>
     <% @players.each do |player|%>
         <% if player.user == current_user%>
-        <p>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%> *** <a href="/players/<%= player.id%>">Link</a></p>
+        <p><%= player.name%> ***  <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%> *** <a href="/players/<%= player.id%>">player</a></p>
         <%else%>
-        <p>Band Member: <%= player.name%> *** Instrument: <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%></p>
+        <p><%= player.name%> ***  <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%></p>
         <%end%>
     <%end%>
 <%end%>
