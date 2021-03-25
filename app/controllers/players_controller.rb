@@ -44,7 +44,7 @@ class PlayersController < ApplicationController
         if @player.user == current_user
             erb :'players/edit'
         else
-            redirect '/login'
+            redirect '/players'
         end
     end
 
