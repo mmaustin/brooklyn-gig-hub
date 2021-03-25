@@ -3,25 +3,28 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: wrap;
-}
-
-.wrapper {
-    background-color: rgb(222, 223, 213);
-    width: 50%;
-    height: inherit;
-    border: 1px solid blue;
+    height: 750px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-flow: wrap;
 }
 
+.wrapper {
+    background-color: rgb(222, 223, 213);
+    width: 50%;
+    margin-top: 0;
+    height: 700px;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column;
+}
+
 footer {
+    margin: 0;
+    height: 20px;
     width: 100%;
     border: 1px solid red;
     display: flex;
@@ -31,8 +34,7 @@ footer {
 }
 
 #g-index {
-    width: 75%;
-    background-color: rgb(105, 105, 139);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +42,6 @@ footer {
 }
 
 .pg {
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,16 +49,8 @@ footer {
     width: 80%;
 }
 
-#user-show {
-    background-color: burlywood;
-}
-
 .notice {
     font-size: xx-large;
-}
-
-#players-box {
-    background-color: dimgrey;
 }
 
 nav {
