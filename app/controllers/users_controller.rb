@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @user = User.create(params)
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
             #redirect '/signup'
-            flash[:error] = "You must fill in all entries."
+            flash[:error] = "You must fill in all entries!"
             redirect '/signup'
         else
             session[:user_id] = @user.id
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect '/gigs'
         else
+            flash[:error] = "Retry log in!"
             redirect '/login'
         end
     end
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
     get '/users' do
         @users = User.all 
         if !logged_in?
+            flash[:error] = "You are not logged in!"
             redirect '/login'
         else
             erb :'users/index'
@@ -42,25 +44,18 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        @user = User.find_by(id: params[:id])
+        @user = User.find_by_id(params[:id])
         if @user == current_user
             erb :'users/show'
         else
+            flash[:error] = "Please select your band."
             redirect '/users'
         end
     end
 
     get '/logout' do
         session.clear
-        redirect '/users'
+        redirect '/login'
     end
 
 end
-
-=begin
-    
-<% if flash[:error]%>
-    <%= flash[:error] %>
-<%end%>
-    
-=end

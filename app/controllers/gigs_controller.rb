@@ -5,6 +5,7 @@ class GigsController < ApplicationController
     get '/gigs' do
         @gigs = Gig.all 
         if !logged_in?
+            flash[:error] = "Please log in!"
             redirect '/login'
         else
             erb :'gigs/index'
@@ -13,6 +14,7 @@ class GigsController < ApplicationController
 
     get '/gigs/new' do
         if !logged_in?
+            flash[:error] = "Please log in!"
             redirect '/login'
         else
             erb :'gigs/new'
@@ -22,6 +24,7 @@ class GigsController < ApplicationController
     post '/gigs' do
         @gig = Gig.new(params)
         if @gig.venue.blank? || @gig.date.blank? || @gig.time.blank?
+            flash[:error] = "You must fill in each field."
             redirect '/gigs/new'
         else
             @gig.user = current_user
@@ -35,6 +38,7 @@ class GigsController < ApplicationController
         if @gig.user == current_user
             erb :'gigs/show'
         else
+            flash[:error] = "Please select one of your gigs."
             redirect '/gigs'
         end
     end
@@ -44,6 +48,7 @@ class GigsController < ApplicationController
         if @gig.user == current_user
             erb :'gigs/edit'
         else
+            flash[:error] = "You can only edit one of your gigs."
             redirect '/gigs'
         end
     end
@@ -55,7 +60,8 @@ class GigsController < ApplicationController
             @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
             redirect "/gigs/#{@gig.id}"
         else
-            redirect '/gigs'
+            flash[:error] = "Please attempt to edit your gig again."
+            redirect "/gigs/#{@gig.id}/edit"
         end
     end
 
