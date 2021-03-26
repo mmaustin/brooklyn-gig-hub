@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     post '/signup' do
         @user = User.create(params)
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
+            #redirect '/signup'
+            flash[:error] = "You must fill in all entries."
             redirect '/signup'
         else
             session[:user_id] = @user.id
@@ -54,3 +56,11 @@ class UsersController < ApplicationController
     end
 
 end
+
+=begin
+    
+<% if flash[:error]%>
+    <%= flash[:error] %>
+<%end%>
+    
+=end
