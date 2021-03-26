@@ -48,7 +48,7 @@ class GigsController < ApplicationController
         if @gig.user == current_user
             erb :'gigs/edit'
         else
-            flash[:error] = "You can only edit one of your gigs."
+            flash[:error] = "You can only edit one of your own gigs."
             redirect '/gigs'
         end
     end
@@ -60,7 +60,7 @@ class GigsController < ApplicationController
             @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
             redirect "/gigs/#{@gig.id}"
         else
-            flash[:error] = "Please attempt to edit your gig again."
+            flash[:error] = "Please try to edit your gig again."
             redirect "/gigs/#{@gig.id}/edit"
         end
     end

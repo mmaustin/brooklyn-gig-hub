@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
     get '/players' do
         @players = Player.all
         if !logged_in?
+            flash[:error] = "Please log in!"
             redirect '/login'
         else
             erb :'players/index'
@@ -13,6 +14,7 @@ class PlayersController < ApplicationController
 
     get '/players/new' do
         if !logged_in?
+            flash[:error] = "Please log in!"
             redirect '/login'
         else
             erb :'players/new'
@@ -22,6 +24,7 @@ class PlayersController < ApplicationController
     post '/players' do
         @player = Player.new(params)
         if @player.name.blank? || @player.instrument.blank?
+            flash[:error] = "You must fill in each field."
             redirect '/players/new'
         else
             @player.user = current_user
@@ -35,6 +38,7 @@ class PlayersController < ApplicationController
         if @player.user == current_user
             erb :'players/show'
         else
+            flash[:error] = "Please select one of your players."
             redirect '/players'
         end
     end
@@ -44,6 +48,7 @@ class PlayersController < ApplicationController
         if @player.user == current_user
             erb :'players/edit'
         else
+            flash[:error] = "You can only edit one of your own players."
             redirect '/players'
         end
     end
@@ -54,7 +59,8 @@ class PlayersController < ApplicationController
             @player.update(name: params[:name], instrument: params[:instrument])
             redirect "/players/#{@player.id}"
         else
-            redirect '/players'
+            flash[:error] = "Please try to edit your player again."
+            redirect "/players/#{@player.id}/edit"
         end
     end
 
