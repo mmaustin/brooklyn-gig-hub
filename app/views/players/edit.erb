@@ -1,9 +1,9 @@
 <div class="common">
     <h1>Brooklyn Band Hub</h1>
 
-    <h2 id="player-message">To edit the player you must fill out all of the fields or you will redirect to the players page.</h2>
+    <h2 id="player-message">Please fill out all fields to edit the player's information.</h2>
 
-    <h3>**** <%= @player.user.username%> *** <%= @player.name%> *** <%= @player.instrument%>  ***  <%= @player.id%></h3><br>
+    <h3><%= @player.user.username%> * <%= @player.name%> * <%= @player.instrument%>  *  <%= @player.id%></h3><br>
 
     <% if @player.user == current_user%>
     <form action="/players/<%= @player.id%>" method="post">
@@ -13,7 +13,7 @@
         <p class="edit-p"><input type="submit" value="Edit Player"></p>
     </form>
     <%else%>
-        <p>Not your player</p>
+        <p>This is not your player</p>
     <%end%>
 
 </div>

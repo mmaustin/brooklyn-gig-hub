@@ -1,15 +1,20 @@
-<p class="notice">You must fill out all of the fields or you will be redirected</p>
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
 
-<p>**** <%= @gig.user.username%>  *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
+    <h2 id="gig-message">Please fill out all fields to edit your gig.</h2>
 
-<% if @gig.user == current_user%>
-<form action="/gigs/<%= @gig.id%>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    Venue: <input type="text" name="venue">
-    Date: <input type="text" name="date">
-    Time: <input type="text" name="time">
-    <input type="submit" value="Edit Gig">
-</form>
-<%else%>
-<p>Not your gig</p>
-<%end%>
+    <h3><%= @gig.user.username%>  * <%= @gig.venue%> * <%= @gig.date%>  * <%= @gig.time%></h3><br>
+
+    <% if @gig.user == current_user%>
+        <form action="/gigs/<%= @gig.id%>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="patch">
+            <p class="edit-g">Venue: <input type="text" name="venue"></p>
+            <p class="edit-g">Date: <input type="text" name="date"></p>
+            <p class="edit-g">Time: <input type="text" name="time"></p>
+            <p class="edit-g"><input type="submit" value="Edit Gig"></p>
+        </form>
+    <%else%>
+        <p>This is not your gig</p>
+    <%end%>
+
+</div>

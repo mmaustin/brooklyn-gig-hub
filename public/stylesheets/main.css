@@ -93,7 +93,8 @@ nav ul {
       text-align: center;
   }
 
-  .p-signup, .p-login, .new-p, .edit-p, #delete-p, .new-g {
+  .p-signup, .p-login, .new-p, .edit-p, #delete-p, .new-g,
+  .edit-g, #delete-g {
       height: 30px;
       width: 100%;
       display: flex;
@@ -103,7 +104,7 @@ nav ul {
   }
 
   #user-message, #player-message, #p-signup-message,
-    #g-signup-message {
+    #g-signup-message, #gig-message, #welcome-message {
       color: blue;
       margin: 20px 20px 20px 20px;
   }

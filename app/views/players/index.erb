@@ -8,9 +8,9 @@
 <% else%>
     <% @players.each do |player|%>
         <% if player.user == current_user%>
-        <p><%= player.name%> ***  <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%> *** <a href="/players/<%= player.id%>">your player</a></p>
+        <p><%= player.name%> *  <%= player.instrument%> * <%= player.user.username%> * <%= player.id%> * <a href="/players/<%= player.id%>">your player</a></p>
         <%else%>
-        <p><%= player.name%> ***  <%= player.instrument%> *** <%= player.user.username%> *** <%= player.id%></p>
+        <p><%= player.name%> *  <%= player.instrument%> * <%= player.user.username%> * <%= player.id%></p>
         <%end%>
     <%end%>
 <%end%>

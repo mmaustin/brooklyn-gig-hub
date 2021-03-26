@@ -1,7 +1,7 @@
 <div class="common">
 
     <h1>Brooklyn Band Hub</h1>
-    <h3 id="player-message">Below is a list of gigs, with a link provided to your performance(s).</h3>
+    <h3 id="gig-message">Below is a list of gigs, with a link provided to your performance(s).</h3>
 
 
     <% if @gigs.size == 0%>
@@ -9,7 +9,7 @@
     <% else%>
     <% @gigs.each do |gig|%>
         <% if gig.user == current_user%>
-            <p class="pg"><%= gig.user.username%> * <%= gig.venue%> * <%= gig.date%>  * <%= gig.time%> * <%= gig.id%>  * <a href="/gigs/<%= gig.id%>"> Link</a></p><br>
+            <p class="pg"><%= gig.user.username%> * <%= gig.venue%> * <%= gig.date%>  * <%= gig.time%> * <%= gig.id%>  * <a href="/gigs/<%= gig.id%>">your gig</a></p><br>
         <%else%>
             <p class= "pg"> <%= gig.user.username%> * <%= gig.venue%> * <%= gig.date%>  * <%= gig.time%> * <%= gig.id%></p>                 
         <% end%>

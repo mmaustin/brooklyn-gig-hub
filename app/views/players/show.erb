@@ -1,9 +1,9 @@
 <div class="common">
     <h1>Brooklyn Band Hub</h1>
-    <h2 id="player-message">Edit <%=@player.name%>'s information</h2>
+    <h2 id="player-message">You can view, edit, or delete your player</h2>
 
     <% if @player.user == current_user%>
-    <h3><%= @player.name%> ***  <%= @player.instrument%> *** <%= @player.user.username%> *** <%= @player.id%></h3>
+    <h3><%= @player.name%> *  <%= @player.instrument%> * <%= @player.user.username%> * <%= @player.id%></h3>
 
     <p class="edit-p"><a href="/players/<%= @player.id%>/edit">Edit Player</a></p>
     <form action="/players/<%= @player.id%>" method='post'>

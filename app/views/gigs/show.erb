@@ -1,12 +1,18 @@
-<% if @gig.user == current_user%>
-<p>**** <%= @gig.user.username%> *** <%= @gig.venue%> *** <%= @gig.date%>  *** <%= @gig.time%> *** </p><br>
+<div class="common">
+    <h1>Brooklyn Band Hub</h1>
+    <h2 id="gig-message">You can view, edit, or delete your gig.</h2>
+
+    <% if @gig.user == current_user%>
+    <h3> <%= @gig.user.username%> * <%= @gig.venue%> * <%= @gig.date%>  * <%= @gig.time%></h3><br>
 
 
-<a href="/gigs/<%= @gig.id%>/edit">Edit Gig</a>
-<form action="/gigs/<%= @gig.id%>" method='post'>
-    <input id='hidden' type='hidden' name='_method' value='delete'>
-    <input type='submit' value="Delete Gig">
-</form>
-<%else%>
-<p>This is not your gig</p>
-<%end%>
+    <p class="edit-g"><a href="/gigs/<%= @gig.id%>/edit">Edit Gig</a></p>
+    <form action="/gigs/<%= @gig.id%>" method='post'>
+        <input id='hidden' type='hidden' name='_method' value='delete'>
+        <p id="delete-g"><input type='submit' value="Delete Gig"></p>
+    </form>
+    <%else%>
+        <p>This is not your gig</p>
+    <%end%>
+
+</div>

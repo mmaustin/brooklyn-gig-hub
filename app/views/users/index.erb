@@ -4,9 +4,9 @@
 
 <% @users.each do |user|%>
     <% if user == current_user%>
-        <h3>** <%= user.username%> ** <%= user.id%> ** <a href="/users/<%= user.id%>">your band</a> </h3><br>
+        <h3> <%= user.username%> * <%= user.id%> * <a href="/users/<%= user.id%>">your band</a> </h3><br>
     <% else%>
-        <h3>** <%= user.username%> ** <%= user.id%></h3><br>
+        <h3> <%= user.username%> * <%= user.id%></h3><br>
     <%end%>
 <%end%>
 </div>
