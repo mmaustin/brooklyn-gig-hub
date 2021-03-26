@@ -1,10 +1,17 @@
-<% if logged_in? %>
-<form action="/gigs" method="post">
-    Venue: <input type="text" name="venue">
-    Date: <input type="text" name="date">
-    Time: <input type="text" name="time">
-    <input type="submit" value="New Gig">
-</form>
-<% else%>
-    <p>You must be logged in to create a gig.</p>
-<%end%>
+<div class="common">
+
+    <h1>Brooklyn Band Hub</h1>
+    <h2 id="g-signup-message">Add a gig below</h2>
+
+    <% if logged_in? %>
+    <form action="/gigs" method="post">
+        <p class="new-g">Venue: <input type="text" name="venue"></p>
+        <p class="new-g">Date: <input type="text" name="date"></p>
+        <p class="new-g">Time: <input type="text" name="time"></p>
+        <p class="new-g"><input type="submit" value="New Gig"></p>
+    </form>
+    <% else%>
+        <p class="new-g">You must be logged in to create a gig.</p>
+    <%end%>
+
+</div>
