@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
     post '/signup' do
         @user = User.new(params)
-        #binding.pry
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
             flash[:error] = "You must fill in all entries!"
             redirect '/signup'
