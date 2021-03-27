@@ -7,12 +7,13 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        @user = User.create(params)
+        @user = User.new(params)
+        binding.pry
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
-            #redirect '/signup'
             flash[:error] = "You must fill in all entries!"
             redirect '/signup'
         else
+            @user.save
             session[:user_id] = @user.id
         end
         redirect '/gigs'
