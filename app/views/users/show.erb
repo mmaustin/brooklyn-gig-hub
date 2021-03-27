@@ -5,10 +5,10 @@
     <h3><%= @user.username%></h3>
 
     <% @user.gigs.each do |gig|%>
-        <h3><%= gig.venue%> *** <%=gig.date%> *** <%=gig.time%></h3>
+        <h3>Gig: <%= gig.venue%> * <%=gig.date%> * <%=gig.time%></h3>
     <% end%>
     
     <% @user.players.each do |player|%>
-        <h3><%= player.name%> *** <%= player.instrument%></h3>
+        <h3>Player: <%= player.name%> * <%= player.instrument%></h3>
     <% end%>
 </div>

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     post '/signup' do
         @user = User.new(params)
-        binding.pry
+        #binding.pry
         if @user.username.blank? || @user.email.blank? || @user.password.blank?
             flash[:error] = "You must fill in all entries!"
             redirect '/signup'
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
             @user.save
             session[:user_id] = @user.id
         end
-        redirect '/gigs'
+        redirect '/users'
     end
 
     get '/login' do
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         @user = User.find_by_username(params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect '/gigs'
+            redirect '/users'
         else
             flash[:error] = "Retry log in!"
             redirect '/login'
