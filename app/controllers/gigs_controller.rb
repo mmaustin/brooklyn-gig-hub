@@ -34,22 +34,32 @@ class GigsController < ApplicationController
     end
 
     get '/gigs/:id' do
-        @gig = Gig.find_by_id(params[:id])
-        if @gig.user == current_user
-            erb :'gigs/show'
+        if !Gig.find_by_id(params[:id])
+            flash[:error] = "You entered a gig that does not exist."
+            redirect "/gigs"
         else
-            flash[:error] = "Please select one of your gigs."
-            redirect '/gigs'
+            @gig = Gig.find_by_id(params[:id])
+            if @gig.user == current_user
+                erb :'gigs/show'
+            else
+                flash[:error] = "Please select one of your gigs."
+                redirect '/gigs'
+            end
         end
     end
 
     get '/gigs/:id/edit' do
-        @gig = Gig.find_by_id(params[:id])
-        if @gig.user == current_user
-            erb :'gigs/edit'
+        if !Gig.find_by_id(params[:id])
+            flash[:error] = "You entered a gig that does not exist."
+            redirect "/gigs"
         else
-            flash[:error] = "You can only edit one of your own gigs."
-            redirect '/gigs'
+            @gig = Gig.find_by_id(params[:id])
+            if @gig.user == current_user
+                erb :'gigs/edit'
+            else
+                flash[:error] = "You can only edit one of your own gigs."
+                redirect '/gigs'
+            end
         end
     end
 
