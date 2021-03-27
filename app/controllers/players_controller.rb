@@ -34,22 +34,32 @@ class PlayersController < ApplicationController
     end
 
     get '/players/:id' do
-        @player = Player.find_by_id(params[:id])
-        if @player.user == current_user
-            erb :'players/show'
+        if !Player.find_by_id(params[:id])
+            flash[:error] = "You entered a player who does not exist."
+            redirect "/players"
         else
-            flash[:error] = "Please select one of your players."
-            redirect '/players'
+            @player = Player.find_by_id(params[:id])
+            if @player.user == current_user
+                erb :'players/show'
+            else
+                flash[:error] = "Please select one of your players."
+                redirect '/players'
+            end
         end
     end
 
     get '/players/:id/edit' do
-        @player = Player.find_by_id(params[:id])
-        if @player.user == current_user
-            erb :'players/edit'
+        if !Player.find_by_id(params[:id])
+            flash[:error] = "You entered a player who does not exist."
+            redirect "/players"
         else
-            flash[:error] = "You can only edit one of your own players."
-            redirect '/players'
+            @player = Player.find_by_id(params[:id])
+            if @player.user == current_user
+                erb :'players/edit'
+            else
+                flash[:error] = "You can only edit one of your own players."
+                redirect '/players'
+            end
         end
     end
 
