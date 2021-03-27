@@ -3,7 +3,12 @@ require 'pry'
 class UsersController < ApplicationController
     
     get '/signup' do
-        erb :'users/signup'
+        if logged_in?
+            flash[:error] = "You are already signed up."
+            redirect '/users'
+        else
+            erb :'users/signup'
+        end
     end
 
     post '/signup' do
@@ -19,7 +24,12 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        erb :'users/login'
+        if logged_in?
+            flash[:error] = "You are already logged in."
+            redirect '/users'
+        else
+            erb :'users/login'
+        end
     end
 
     post '/login' do
