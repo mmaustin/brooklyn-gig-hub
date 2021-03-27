@@ -70,7 +70,7 @@ class GigsController < ApplicationController
             @gig.update(venue: params[:venue], date: params[:date], time: params[:time])
             redirect "/gigs/#{@gig.id}"
         else
-            flash[:error] = "Please try to edit your gig again."
+            flash[:error] = "Please try again. Fill in all fields."
             redirect "/gigs/#{@gig.id}/edit"
         end
     end

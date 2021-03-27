@@ -69,7 +69,7 @@ class PlayersController < ApplicationController
             @player.update(name: params[:name], instrument: params[:instrument])
             redirect "/players/#{@player.id}"
         else
-            flash[:error] = "Please try to edit your player again."
+            flash[:error] = "Please try again. Fill in all fields."
             redirect "/players/#{@player.id}/edit"
         end
     end
