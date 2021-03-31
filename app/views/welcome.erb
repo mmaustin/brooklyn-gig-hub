@@ -1,6 +1,9 @@
 <div class="common">
     <h1>Brooklyn Band Hub</h1>
     <h2 id="welcome-message">Let Brooklyn know when and where your band is performing!</h2>
-    <a class="a-welcome" href="/signup">Sign Up</a><br>
-    <a class="a-welcome" href="/login">Log In</a>
+<% if !logged_in? %>
+    <h3>Please sign up or log in.</h3>
+<% else%>
+    <h3>You can view, add, and edit your band's gigs and players.</h3>
+<% end%>
 </div>
